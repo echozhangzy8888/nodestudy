@@ -2,7 +2,7 @@
 * @Author: ZhangZheyi
 * @Date:   2016-06-23 14:36:21
 * @Last Modified by:   ZhangZheyi
-* @Last Modified time: 2016-06-23 14:46:20
+* @Last Modified time: 2016-06-27 17:13:39
 */
 // 　1.连接池的创建，使用createPool方法，options和createConntion一致，可以监听connection事件。
 
@@ -21,7 +21,7 @@ var pool = mysql.createPool({
 //监听connection事件
 
 pool.on("connection",function (connection) {
-   // connection.query('SET SESSION auto_increment_increment=1'); 
+   // connection.query('SET SESSION auto_increment_increment=1');   //www.tuicool.com/articles/eAZJzm
 })
 
 // //直接使用

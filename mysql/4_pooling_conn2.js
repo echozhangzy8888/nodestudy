@@ -2,7 +2,7 @@
 * @Author: ZhangZheyi
 * @Date:   2016-06-23 14:36:21
 * @Last Modified by:   ZhangZheyi
-* @Last Modified time: 2016-06-23 18:16:43
+* @Last Modified time: 2016-06-27 16:39:00
 */
 // 　1.连接池的创建，使用createPool方法，options和createConntion一致，可以监听connection事件。
 
