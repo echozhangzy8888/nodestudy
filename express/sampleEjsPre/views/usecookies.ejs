@@ -6,8 +6,9 @@
   </head>
   <body>     
       <% include nav %>
-
+    <% console.log("前端 cookies是："+locals.islogin) %>
       <% if(locals.islogin){ %>
+        cookies:
          用户已登录
     <% } else { %>
          <form method="post">          

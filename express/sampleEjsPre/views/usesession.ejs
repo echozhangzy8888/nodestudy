@@ -7,12 +7,17 @@
   <body>     
       <% include nav %>
 
+   <% console.log("前端 session是："+locals.islogin) %>
+
       <% if(locals.islogin){ %>
+      session:
          用户已登录
     <% } else { %>
          <form method="post">          
               <input type="submit" value="登录">
           </form>
     <% } %>
+      
+   
   </body>
 </html>

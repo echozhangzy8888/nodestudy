@@ -123,3 +123,21 @@ express中可以用中间件来使用session，express-session( https://github.c
 更多中间件：https://github.com/senchalabs/connect#middleware
 
 官方示例：https://github.com/visionmedia/express/blob/master/examples/session/index.js
+
+##如何使用cookies?
+如果是登录，那常见就是“记录密码”或“自动登录”功能，这个一般用 cookies来完成
+cookies存在客户端，安全性较低，一般要存入加密后的信息；建议要设置使用过期时间或不使用时删除掉
+
+express也同样可以用中间件来使用：https://github.com/expressjs/cookie-parser
+示例设计思路：在上面session示例的基础上，在usecookies部分登录同时记录cookies，来自动登录
+官方示例：https://github.com/expressjs/express/blob/master/examples/cookies/index.js
+
+##如何清除session和cookies?
+~~~
+//清除cookies
+res.clearCookie('islogin');
+  
+//清除session
+req.session.destroy();
+~~~
+
