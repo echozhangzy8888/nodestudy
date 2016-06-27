@@ -24,7 +24,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());                              //处理post请求中间件
 app.use(bodyParser.urlencoded({ extended: false }));     //处理post请求中间件
 app.use(cookieParser("wilson"));    //这里传入了一个密钥加session id
-app.use(session({secret:"wilson"})) //使用靠就这个中间件
+app.use(session({ secret: 'wilson'}));//使用靠就这个中间件
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/subform', subform);

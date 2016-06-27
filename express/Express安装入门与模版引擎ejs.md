@@ -122,4 +122,4 @@ session存在于服务器端，需要cookies的协助才能完成；服务器端
 express中可以用中间件来使用session，express-session( https://github.com/expressjs/session ) 可以存在内存中，也可以存在mongodb、redis等中...
 更多中间件：https://github.com/senchalabs/connect#middleware
 
- 
+官方示例：https://github.com/visionmedia/express/blob/master/examples/session/index.js
