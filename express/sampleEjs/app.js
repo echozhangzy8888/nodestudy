@@ -36,9 +36,9 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use("/reg",reg);
-app.use("/login",login);
-app.use("/logout",logout);
+app.use("/reg", reg);
+// app.use("/login",login);
+// app.use("/logout",logout);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

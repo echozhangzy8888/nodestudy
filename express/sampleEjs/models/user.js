@@ -2,7 +2,7 @@
 * @Author: ZhangZheyi
 * @Date:   2016-06-23 14:36:21
 * @Last Modified by:   ZhangZheyi
-* @Last Modified time: 2016-06-27 17:13:09
+* @Last Modified time: 2016-06-28 15:38:48
 */
 
 'use strict';
@@ -41,8 +41,59 @@ pool.getConnection(function (err,connection) {
    });
 
    //保存数据
-   User.prototype.save = function save(callbacj) {
-       // body...
-   }
+   User.prototype.save = function save (callback) {
+        var user ={
+             username:this.username,
+             userpass:this.userpass
+        };
 
-})
+        var insertUser_Sql ="insert into userinfo(id,username,userpass) values(0,?,?)";
+
+        connection.query(insertUser_Sql, [user.username, user.userpass], function (err,result) {
+            if (err) {
+                 console.log("insertUser_Sql Error: " + err.message);
+                 return;
+            }
+
+            // connection.release();
+
+             console.log("invoked[save]");
+             callback(err,result);
+        });
+   };
+
+   //根据用户名得到用户数量
+   User.getUserNumByName = function getUserNumByName(username, callback) {
+       var getUserNumByName_Sql = "select count(1) as num from userinfo where username = ?";  
+
+       connection.query(getUserNumByName_Sql, [username], function (err, result) {
+           if (err) {
+                console.log("getUserNumByName Error: " + err.message);
+                return;
+           }
+
+          // connection.release();
+
+           console.log("invoked[getUserNumByName]");
+           callback(err,result);
+       });
+   };
+
+   //根据用户名得到用户信息
+   User.getUserByUserName = function  getUserByUserName(username, callback) {
+       var getUserByUserName_Sql = "select * from userinfo where username = ?";
+
+       connection.query(getUserByUserName_Sql, [username], function (err, result) {
+           if (err) {
+                 console.log("getUserByUserName Error: " + err.message);
+                 return;
+           }
+
+            connection.release();
+
+            console.log("invoked[getUserByUserName]");
+            callback(err,result);
+       });
+   };
+   
+});

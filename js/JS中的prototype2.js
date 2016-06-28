@@ -2,7 +2,7 @@
 * @Author: ZhangZheyi
 * @Date:   2016-06-27 18:02:06
 * @Last Modified by:   ZhangZheyi
-* @Last Modified time: 2016-06-27 18:03:08
+* @Last Modified time: 2016-06-28 09:26:41
 */
 
 'use strict';
@@ -39,11 +39,11 @@ extendClass.showMsg = function()
 extendClass.prototype = new baseClass();
 var instance = new extendClass();
 
-instance.showMsg(); //显示extendClass::showMsg
-instance.baseShowMsg(); //显示baseClass::baseShowMsg
-instance.showMsg(); //显示extendClass::showMsg
+ instance.showMsg(); //显示extendClass::showMsg
+ instance.baseShowMsg(); //显示baseClass::baseShowMsg
+ instance.showMsg(); //显示extendClass::showMsg
 
-baseClass.showMsg.call(instance);//显示baseClass::showMsg static
+ baseClass.showMsg.call(instance);//显示baseClass::showMsg static
 
 var baseinstance = new baseClass();
 baseinstance.showMsg.call(instance);//显示baseClass::showMsg
