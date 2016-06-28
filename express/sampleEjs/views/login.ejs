@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">     
+    <title><%= title %></title>
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/signin.css" />
+  </head>
+  <body class="login">
+  <div class="logo">
+    <h2>管理系统</h2>
+  </div>
+    <div class="content" id="container">
+        <form  method="post" role="form" >
+                 <% if (locals.success) { %> 
+                    <div id="alt_sucess" class="alert alert-success"> 
+                      <%- success %> 
+                    </div> 
+                 <% } %> 
+
+                <% if (locals.error) { %> 
+                  <div id="alt_warning" class="alert alert-warning"> 
+                    <%= error %> 
+                  </div> 
+                <% } %> 
+                
+                <div class="form-group">
+                  <h3 class="form-title">登录账户</h3>  
+                  <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                  <label class="control-label visible-ie8 visible-ie9">用户名</label>
+                  <div class="input-icon">
+                    <i class=" glyphicon glyphicon-user"></i>
+                    <input id="txtUserName" name="txtUserName" type="text" class="form-control placeholder-no-fix" placeholder="用户名" required autofocus />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label visible-ie8 visible-ie9">密码</label>
+                  <div class="input-icon">
+                    <i class="glyphicon glyphicon-lock"></i>
+                    <input id="txtUserPwd" name="txtUserPwd" type="password" class="form-control placeholder-no-fix" placeholder="密码" required/> 
+                  </div>
+                </div>
+
+                <div class="form-group">
+                     <label class="checkbox">
+                        <input name="chbRem" id="chbRem" type="checkbox" value="remember-me"> 记住密码
+                    </label>   
+                </div>
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-info btn-block"  id="btnSub">登  录</button>
+                </div>
+
+                <div class="form-group">
+                  <a class="pull-left"  href="/">忘记密码？</a>
+                  <a class="pull-right"  href="/reg" role="button">账号注册</a>
+                </div>
+          <div class="clear"></div>
+        </form>
+    </div>
+  </body>
+</html>
+<script src="/javascripts/jquery-1.12.4.js" type="text/javascript"></script>
+<script type="text/javascript">
+     String.prototype.format = function (args) {
+            var result = this;
+            if (arguments.length > 0) {
+                if (arguments.length == 1 && typeof (args) == "object") {
+                    for (var key in args) {
+                        if (args[key] != undefined) {
+                            var reg = new RegExp("({" + key + "})", "g");
+                            result = result.replace(reg, args[key]);
+                        }
+                    }
+                }
+                else {
+                    for (var i = 0; i < arguments.length; i++) {
+                        if (arguments[i] != undefined) {
+                            var reg = new RegExp("({)" + i + "(})", "g");
+                            result = result.replace(reg, arguments[i]);
+                        }
+                    }
+                }
+            }
+            return result;
+    }
+    $(function(){
+        $('#btnSub').on('click',function(){           
+            var 
+            $txtUserName = $('#txtUserName'),
+            txtUserNameVal = $.trim($txtUserName.val()),            
+            $txtUserPwd = $('#txtUserPwd'),
+            txtUserPwdVal = $.trim($txtUserPwd.val()),
+            errorTip = '<div id="errorTip" class="alert alert-warning">{0}</div> ';  
+
+            $("#errorTip,#alt_warning").remove();
+            
+            if(txtUserNameVal.length == 0)
+            {
+                $("#container").prepend(errorTip.format('用户名不能为空'));                
+                $txtUserName.focus();
+                return false;
+            }
+
+            if(txtUserPwdVal.length == 0)
+            {                
+                $("#container").prepend(errorTip.format('密码不能为空'));
+                $txtUserPwd.focus();
+                return false;
+            }
+            
+            return true;                
+        })
+    });
+</script>

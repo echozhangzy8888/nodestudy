@@ -1,40 +1,139 @@
 body {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #eee;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
 }
 
 .form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
 }
+
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
+
 .form-signin .checkbox {
-  font-weight: normal;
+    font-weight: normal;
 }
+
 .form-signin .form-control {
-  position: relative;
-  font-size: 16px;
-  height: auto;
-  padding: 10px;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
+
 .form-signin .form-control:focus {
-  z-index: 2;
+    z-index: 2;
 }
+
 .form-signin input[type="text"] {
-  margin-bottom: 10px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+    margin-bottom: 10px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
+
 .form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+// 登陆
+.login {
+    background-color: #eee !important;
+}
+
+.login .logo {
+    margin: 0 auto;
+    margin-top: 60px;
+    padding: 15px;
+    text-align: center;
+}
+
+.login .content {
+    background-color: #fff;
+    width: 360px;
+    margin: 0 auto;
+    margin-bottom: 0px;
+    padding: 30px;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    border-radius: 4px;
+}
+
+.clear {
+    clear: both
+}
+
+.login .checkbox{
+    padding-left: 20px;
+}
+
+/* input with left aligned icons */
+
+.input-icon {
+    position: relative;
+}
+
+.input-icon input {
+    padding-left: 33px !important;
+}
+
+.input-icon i {
+    color: #ccc;
+    display: block;
+    position: absolute;
+    margin: 9px 2px 4px 10px;
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.input-icon.right input {
+    padding-left: 12px !important;
+    padding-right: 33px !important;
+}
+
+.input-icon.right i {
+    right: 8px;
+    float: right;
+}
+
+.has-success .input-icon > i {
+    color: #468847;
+}
+
+.has-warning .input-icon > i {
+    color: #c09853;
+}
+
+.has-error .input-icon > i {
+    color: #b94a48;
+}
+
+@media (max-width: 480px) {
+    /***
+          Login page
+          ***/
+    .login .logo {
+        margin-top: 10px;
+    }
+    .login .content {
+        padding1: 20px;
+        width: 280px;
+    }
+    .login .content h2 {
+        font-size: 22px;
+    }
+    .login .checkbox {
+        font-size: 13px;
+    }
 }

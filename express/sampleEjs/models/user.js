@@ -2,7 +2,7 @@
 * @Author: ZhangZheyi
 * @Date:   2016-06-23 14:36:21
 * @Last Modified by:   ZhangZheyi
-* @Last Modified time: 2016-06-28 15:38:48
+* @Last Modified time: 2016-06-28 17:44:53
 */
 
 'use strict';
@@ -89,7 +89,7 @@ pool.getConnection(function (err,connection) {
                  return;
            }
 
-            connection.release();
+           // connection.release();
 
             console.log("invoked[getUserByUserName]");
             callback(err,result);
