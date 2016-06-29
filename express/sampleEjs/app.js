@@ -6,10 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
-var routes = require('./routes/index');
-var reg = require("./routes/reg");
-var login =require("./routes/login");
-var logout = require("./routes/logout")
+var routes = require('./routes/route');
 
 var app = express();
 
@@ -34,11 +31,7 @@ app.use(session({
 }));
 
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', routes);
-app.use("/reg", reg);
-app.use("/login",login);
-// app.use("/logout",logout);
+routes.start(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -74,4 +67,5 @@ app.use(function(err, req, res, next) {
 app.listen(8000,function () {
    console.log("Server Start!");
 });
+
 module.exports = app;

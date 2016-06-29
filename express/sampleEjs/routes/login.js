@@ -2,7 +2,7 @@
 * @Author: ZhangZheyi
 * @Date:   2016-06-27 16:10:38
 * @Last Modified by:   ZhangZheyi
-* @Last Modified time: 2016-06-28 18:03:14
+* @Last Modified time: 2016-06-29 11:22:48
 */
 
 'use strict';
@@ -36,8 +36,8 @@ router.post("/", function (req,res, next) {
         }
       
         userPwd = md5.update(userPwd).digest("hex");
-        
         console.log("md5密码是："+ userPwd);
+
         if (results[0].UserName != userName || results[0].UserPass != userPwd ) {
 
              console.log("配对错误："+userName);
@@ -50,13 +50,15 @@ router.post("/", function (req,res, next) {
         }else{
 
             console.log("配对成功："+userName)
+            console.log("isRem:"+isRem)
             if(isRem){
-                res.cookie("islogin", userName, {maxAge:6000});
+                res.cookie("islogin", userName, {maxAge:12000});
             }
-
+             
             res.locals.username = userName;
-            req.session.username = res.locals.userName;
-            console.log(req.session.userName);
+            req.session.username = res.locals.username;
+            console.log(req.session.username);
+           
             res.redirect("/");
             return;
 

@@ -141,3 +141,4 @@ res.clearCookie('islogin');
 req.session.destroy();
 ~~~
 
+##node.js + Express 实现上传文件功能（felixge/node-formidable）
