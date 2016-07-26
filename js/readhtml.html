@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>读取远程服务器上的HTML文件并显示到页面上</title>
+        <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+       
+    </head>
+    <body>
+         <h1>读取远程服务器上的HTML文件并显示到页面上 (需跑服务！！！)</h1>
+         <form class="namef">
+             <input type="button" name="" value="读入HTML文件" onclick="loadHF('atob.html')"><br>
+         </form>
+         <div id="results">ddd</div>
+      <script type="text/javascript">
+
+           function loadHF (fname) {
+               httpObj = createXMLHttpRequest(displayData);
+               if (httpObj) {
+                    httpObj.open("GET",fname, true);
+                    httpObj.send(null);
+               }
+           }
+
+           function displayData() {
+              if ((httpObj.readyState == 4)&&(httpObj.status =200)) {
+
+                  $("#results").html(httpObj.responseText)
+              }else{
+                 $("#results").html("<b>loading....</b>")
+              }
+           }
+           
+           console.log( $("#results").html());
+          
+        
+            // 适用于多种游览器
+           function createXMLHttpRequest(cbFunc)
+            {
+            var XMLhttpObject = null;
+            try{
+                 XMLhttpObject = new XMLHttpRequest();
+            }catch(e){
+            try{
+                 XMLhttpObject = new ActiveXObject("Msxml2.XMLHTTP");
+            }catch(e){
+            try{
+                 XMLhttpObject = new ActiveXObject("Microsoft.XMLHTTP");
+            }catch(e){
+                return null;
+            }
+            }
+            }
+            if (XMLhttpObject) XMLhttpObject.onreadystatechange = cbFunc;
+                return XMLhttpObject;
+            }
+
+           
+        </script>
+    </body>
+</html>

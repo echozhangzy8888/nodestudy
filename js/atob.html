@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>window.atob()方法;解码base64形式的编码</title>
+         <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    </head>
+    <body>
+        <p>点击以下按钮，解码 base-64编码的字符</p>
+        <button onclick ="myFc()">按钮</button>
+        
+        <p id="demo"></p>
+        
+
+        <script>
+          function myFc() {
+              var str ="hello World!!";
+              var enc =window.btoa(str);
+              var dec = window.atob(enc);
+
+              var res ="编码字符："+ enc +"<br>" +"解码字符："+ dec;
+              document.getElementById("demo").innerHTML =res;
+
+           console.log($("#demo").html())
+
+          }
+
+
+           
+        </script>
+
+    </body>
+</html>

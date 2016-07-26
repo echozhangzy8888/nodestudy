@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<userlist>
+    <user>
+        <number>1</number>
+        <username>王小华</username>
+    </user>
+    <user>
+        <number>2</number>
+        <username>马涛</username>
+    </user>
+    <user>
+        <number>3</number>
+        <username>苏玲玲</username>
+    </user>
+</userlist>
