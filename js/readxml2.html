@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>显示XML文件的具体内容</title>
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+</head>
+
+<body>
+   
+    <form name="namef">
+        <input type="button" value="读入XML文件" onClick="loadXMLF('name.xml')">
+        <br>
+    </form>
+    <ul id="result">
+      
+    </ul>
+
+    <script type="text/javascript">
+    var userData = [];
+
+    function loadXMLF(fname) {
+        httpObj = createXMLHttpRequest(displayData);
+        if (httpObj) {
+            httpObj.open("GET", fname, true);
+            httpObj.send(null);
+        }
+    }
+
+    function displayData() {
+        if ((httpObj.readyState == 4) && (httpObj.status = 200)) {
+            var xmlData = httpObj.responseXML,
+                // numberListTags = xmlData.getElementsByTagName("number"),
+                // numberList1Data =numberListTags[0].childNodes[0].nodeValue;
+                // console.log(numberListTags)
+                // console.log(numberList1Data)
+                // $("#result").html(numberList1Data)
+                
+                userListT = xmlData.getElementsByTagName("user"),
+                numberListT = xmlData.getElementsByTagName("number"),
+                usernameListT = xmlData.getElementsByTagName("username"),
+                users = userListT.length,
+                resultT="";//定义用于表示数据内容的函数
+                for ( i =0; i < users; i++) {
+                    Num = numberListT[i].childNodes[0].nodeValue;
+                    userN = usernameListT[i].childNodes[0].nodeValue;
+                    resultT=resultT+Num+":"+userN+"<br>";
+
+                     console.log(userN)
+                }
+                $("#result").html(resultT);
+
+
+        } else {
+            $("#result").html("Loading...");
+        }
+    }
+
+    // 适用于多种游览器
+    function createXMLHttpRequest(cbFunc) {
+        var XMLhttpObject = null;
+        try {
+            XMLhttpObject = new XMLHttpRequest();
+        } catch (e) {
+            try {
+                XMLhttpObject = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+                try {
+                    XMLhttpObject = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {
+                    return null;
+                }
+            }
+        }
+        if (XMLhttpObject) XMLhttpObject.onreadystatechange = cbFunc;
+        return XMLhttpObject;
+    }
+    </script>
+</body>
+
+</html>

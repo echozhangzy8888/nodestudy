@@ -51,17 +51,18 @@
             console.log(userData);
     
            if (userData) {
-              var html;
+             var html = "";
               for (var i = 0; i <userData.length; i++) {
-                    html = '<li>';
+                    html += '<li>';    //html = '<li>';   (这个时候只能用循环内append看打印)
                     html += '<div class="id"> '  +userData[i].id + '</div>';
                     html += '<div class="number">'  +userData[i].number + '</div>';
                     html += '<div class="username">'  +userData[i].username + '</div> </li>';
-                    console.log(html);
-                   $("#result").append(html); 
+                    console.log(html);  
               }
-               
-              console.log('循环外面：'+html);
+               console.log('循环外面：'+html);
+               // $("#result").html(html); 
+               $("#result").append(html); 
+             
              
            }
         } else {
