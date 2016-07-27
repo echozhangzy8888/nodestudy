@@ -13,7 +13,10 @@
         <input type="button" value="读入XML文件" onClick="loadXMLF('name.xml')">
         <br>
     </form>
-    <div id="result">ddd</div>
+    <ul id="result">
+      
+    </ul>
+
     <script type="text/javascript">
     var userData = [];
 
@@ -30,14 +33,9 @@
             var xmlDoc = httpObj.responseXML,
                 $root = $(xmlDoc),
                 $userlist = $root.find("userlist"),
-                $user = $root.find("userlist").find("user"),
-                $number = $user.find("number"),
-                $username = $user.find("username");
+                $user = $root.find("userlist").find("user");
+             
             // $userlist = xmlDoc.getElementsByTagName("username")[0]
-
-            // console.log($userlist);
-            // console.log($user);
-            // console.log($username);
 
             $user.each(function(i, elem) {
                 var $elem = $(elem);
@@ -50,11 +48,22 @@
                     username: username
                 })
             });
-
-            console.log(userData)
-
-
-            $("#results").html(xmlDoc);
+            console.log(userData);
+    
+           if (userData) {
+              var html;
+              for (var i = 0; i <userData.length; i++) {
+                    html = '<li>';
+                    html += '<div class="id"> '  +userData[i].id + '</div>';
+                    html += '<div class="number">'  +userData[i].number + '</div>';
+                    html += '<div class="username">'  +userData[i].username + '</div> </li>';
+                    console.log(html);
+                   $("#result").append(html); 
+              }
+               
+              console.log('循环外面：'+html);
+             
+           }
         } else {
             $("#results").html("Loading...");
         }
