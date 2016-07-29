@@ -40,9 +40,9 @@
                     </select>
                 </td>
                 <td nowrap="" align="center">
-                    <input type="text" class="form-control createday" data-date-format="yyyy-mm-dd hh:ii" >
+                    <input type="text" class="form-control createday" data-date-format="yyyy-mm-dd hh:ii">
                 </td>
-                <td align="center"><a href="javascript:;" class="confirm">[确认]</a> <a href="javascript:;" class="alter gray">[修改]</a></td>
+                <td align="center"><a href="javascript:;" class="confirm">[确认]</a> <a href="javascript:;" class="alter eidt">[修改]</a></td>
             </tr>
             <tr>
                 <td align="center" class="">2</td>
@@ -56,7 +56,7 @@
                     </select>
                 </td>
                 <td nowrap="" align="center" class="fenzulevel">
-                    <select class="form-control" name="" >
+                    <select class="form-control" name="">
                         <option selected="" value="0">全部</option>
                         <option value="1">中文客户</option>
                         <option value="2">英文客户</option>
@@ -65,7 +65,7 @@
                 <td nowrap="" align="center">
                     <input type="text" class="form-control createday" data-date-format="yyyy-mm-dd hh:ii">
                 </td>
-                <td align="center" class=" "><a href="javascript:;" class="confirm">[确认]</a> <a data-bb="delete" href="javascript:;">[修改]</a></td>
+                <td align="center" class=" "><a href="javascript:;" class="confirm">[确认]</a> <a class="eidt" href="javascript:;">[修改]</a></td>
             </tr>
             <tr>
                 <td align="center" class="">3</td>
@@ -79,7 +79,7 @@
                     </select>
                 </td>
                 <td nowrap="" align="center" class="fenzulevel">
-                    <select class="form-control" name="" >
+                    <select class="form-control" name="">
                         <option selected="" value="0">全部</option>
                         <option value="1">中文客户</option>
                         <option value="2">英文客户</option>
@@ -88,24 +88,50 @@
                 <td nowrap="" align="center">
                     <input type="text" class="form-control createday" data-date-format="yyyy-mm-dd hh:ii">
                 </td>
-                <td align="center" class=" "><a href="javascript:;" class="confirm confirm-active">[确认]</a> <a data-bb="delete" href="javascript:;">[修改]</a></td>
+                <td align="center" class=" "><a href="javascript:;" class="confirm confirm-active">[确认]</a> <a class="eidt" href="javascript:;">[修改]</a></td>
             </tr>
 </body>
 <style type="text/css">
 /*  实例 实际颜色应该是灰色不给选择*/
- .confirm-active{
-    color: red;
- }
 
+.confirm-active {
+    color: red;
+}
+
+.eidt.gray {
+    color: red;
+}
 </style>
 <script type="text/javascript">
 var userData = [];
+var rightLevelOption = [{
+    text: "全部add",
+    value: 0
+}, {
+    text: "正式会员",
+    value: 1
+}, {
+    text: "试用会员",
+    value: 2
+}];
+
+var fenzuOption = [{
+    text: "全部add",
+    value: 0
+}, {
+    text: "中文客户",
+    value: 1
+}, {
+    text: "英文客户",
+    value: 2
+}];
+
 $("#tab01-tbody tr").each(function(i, elem) {
     var $elem = $(elem);
     var xhid = $elem.find('td:first').text();
     var customer = $elem.children().eq(1).text();
     var department = $elem.children().eq(2).text();
-    var rightLevel = $elem.children().eq(3).find("select")
+    var rightLevel = $elem.children().eq(3).find("select");
     var fenzu = $elem.children().eq(4).find("select")
     var daoqiTime = $elem.children().eq(5).find("input")
 
@@ -121,52 +147,105 @@ $("#tab01-tbody tr").each(function(i, elem) {
         fenzu: fenzuData,
         daoqiTime: daoqiTimeData
     });
-});
 
+});
 console.log(userData)
 if (userData) {
 
     $("#tab01-tbody tr").find(".rightlevel select").on('change', function() {
-          var trIndex =$(this).parent().parent("tr").index()
-          userData[trIndex].rightLevel= $(this).children('option:selected').text();
-          console.log(userData[trIndex])
+        var trIndex = $(this).parent().parent("tr").index()
+        userData[trIndex].rightLevel = $(this).children('option:selected').text();
+        console.log(userData[trIndex])
     });
 
     $("#tab01-tbody tr").find(".fenzulevel select").on('change', function() {
-          var trIndex =$(this).parent().parent("tr").index()
-          userData[trIndex].fenzu= $(this).children('option:selected').text();
-          console.log(userData[trIndex])
+        var trIndex = $(this).parent().parent("tr").index()
+        userData[trIndex].fenzu = $(this).children('option:selected').text();
+        console.log(userData[trIndex])
     })
 
-     $("#tab01-tbody tr").find(".createday").on('blur', function() {
-          var trIndex =$(this).parent().parent("tr").index()
-          userData[trIndex].daoqiTime= $(this).val();
-          console.log(userData[trIndex])
+    $("#tab01-tbody tr").find(".createday").on('blur', function() {
+        var trIndex = $(this).parent().parent("tr").index()
+        userData[trIndex].daoqiTime = $(this).val();
+        console.log(userData[trIndex])
     })
 
-    $(".confirm").on('click',function () {
-      var trIndex =$(this).parent().parent("tr").index();
-      var rightlevelVal =userData[trIndex].rightLevel;
-      var fenzuVal =userData[trIndex].fenzu;
-      var daoqiTimeVal =userData[trIndex].daoqiTime
-     console.log(daoqiTimeVal)
+    $(".confirm").on('click', function() {
+        var trIndex = $(this).parent().parent("tr").index();
+        var rightlevelVal = userData[trIndex].rightLevel;
+        var fenzuVal = userData[trIndex].fenzu;
+        var daoqiTimeVal = userData[trIndex].daoqiTime
+        console.log(daoqiTimeVal)
 
-      if($(this).hasClass("confirm-active")){
-          alert("状态已经是确认过了 选择修改");
-          return;
-       }
-       if (rightlevelVal == "0" || fenzuVal == "0" ||  daoqiTimeVal == "") {
-          alert("请选择");
-          return;
-       } 
+        if ($(this).hasClass("confirm-active")) {
+            alert("状态已经是确认过了 选择修改");
+            return;
+        }
+        if (rightlevelVal == "0" || fenzuVal == "0" || daoqiTimeVal == "") {
+            alert("请选择");
+            return;
+        }
 
-       $(this).addClass("confirm-active")
-       $(this).parent().parent("tr").find(".rightlevel").html(userData[trIndex].rightLevel);
-       $(this).parent().parent("tr").find(".fenzulevel").html(userData[trIndex].fenzu);
-       $(this).parent().parent("tr").find(".createday").parent("td").html($(this).parent().parent("tr").find(".createday").val()) 
+        //按钮状态 切换
+        $(this).addClass("confirm-active");
+        $(this).next(".eidt").removeClass("gray");
+
+        $(this).parent().parent("tr").find(".rightlevel").html(userData[trIndex].rightLevel);
+        $(this).parent().parent("tr").find(".fenzulevel").html(userData[trIndex].fenzu);
+        $(this).parent().parent("tr").find(".createday").parent("td").html($(this).parent().parent("tr").find(".createday").val())
     })
 
+    $(".eidt").on('click', function() {
+        var trIndex = $(this).parent().parent("tr").index();
+        var objrightlevel = $(this).parent().parent("tr").find(".rightlevel");
+        var objfenzu = $(this).parent().parent("tr").find(".fenzulevel");
 
+        var createdayInput = document.createElement("input");
+        createdayInput.type = "text";
+        createdayInput.name = "data-end";
+        createdayInput.class = "createday";
+        createdayInput.value = userData[trIndex].daoqiTime;
+
+
+        // 按钮状态 切换
+        $(this).addClass("gray");
+        $(this).prev(".confirm").removeClass("confirm-active");
+
+        //到期时间
+        $(this).parent().prev().html(createdayInput);
+
+        function CreateSelect(obj,optName,optSelected) {
+            this.obj = obj;
+            this.selected = optSelected;   //被选中的
+            this.options = optName;   //options 
+            var newSelect = document.createElement("select");
+            newSelect.class = "form-control";
+            obj.html(newSelect);
+        };
+
+        CreateSelect.prototype.AddOption = function() {
+            console.log(this.obj);
+            console.log(this.selected);
+            console.log(this.options);
+            
+            var html="";
+            for (var i = 0; i < this.options.length; i++) {
+                html += '<option value="' + this.options[i].value +'">'  +this.options[i].text + '</option>'; 
+            }
+            this.obj.find("select").append(html);
+            this.obj.find("select").get(0).selectedIndex = this.selected;
+
+        }
+
+        var CreateSelectRightlevel = new CreateSelect(objrightlevel,rightLevelOption,2);
+        CreateSelectRightlevel.AddOption();
+
+        var CreateSelectFenzu = new CreateSelect(objfenzu,fenzuOption,1);
+        CreateSelectFenzu.AddOption();
+
+
+
+    })
 }
 </script>
 

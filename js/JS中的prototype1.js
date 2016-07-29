@@ -2,7 +2,7 @@
 * @Author: ZhangZheyi
 * @Date:   2016-06-27 17:21:01
 * @Last Modified by:   ZhangZheyi
-* @Last Modified time: 2016-06-27 18:00:11
+* @Last Modified time: 2016-07-29 17:54:28
 */
 
 'use strict';
@@ -23,7 +23,7 @@ function  People(name) {
 
 //类方法
 People.Run = function () {
-   console.log("I can run");
+   console.log("I can run" );
 }
 
 //原型方法
@@ -88,5 +88,9 @@ baseinstance.showMsg.call(instance2);  //显示baseClass::showMsg
 // 这里的baseinstance.showMsg.call(instance);阅读为“将instance当做baseinstance来调用，调用它的对象方法showMsg”
 // 好了，这里可能有人会问，为什么不用baseClass.showMsg.call(instance);
 // 这就是对象方法和类方法的区别，我们想调用的是baseClass的对象方法
+// 
+var str = "objtest";
+        str = str.replace(/^obj/,'')+'Option';
+        console.log(str);
 
 
