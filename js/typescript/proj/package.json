@@ -1,0 +1,21 @@
+{
+  "name": "proj",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --watch --progress"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "ts-loader": "^0.8.2",
+    "webpack": "^1.13.2"
+  },
+  "devDependencies": {
+    "source-map-loader": "^0.1.5",
+    "ts-loader": "^0.8.2"
+  }
+}
